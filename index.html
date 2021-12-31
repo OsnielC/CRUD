@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Lista de actividades</title>
+</head>
+<body>
+    <header>
+        <h1>LISTA DE ACTIVIDADES</h1>
+        <form id="newTaskForm">
+            <label for="task">Actividad:</label>
+            <input type="text" name="task" id="task" placeholder="Escriba una actividad...">
+
+            <label for="responsable">Responsable:</label>
+            <input type="text" name="responsable" id="responsable" placeholder="Escriba un nombre...">
+
+            <label for="responsable">Fecha de registro:</label>
+            <input type="date" name="registrationDate" id="registrationDate">
+
+            <label for="responsable">Fecha de cumplimiento:</label>
+            <input type="date" name="finalDate" id="finalDate">
+
+            <input type="submit" id="taskSubmit" value="Agregar">
+        </form>
+    </header>
+    <main>
+        <section class="taskList">
+            <h2>Actividades</h2>
+            <div class="tasksContainer">
+                <div class="task">
+                    <div class="content">
+                        <input type="text" class="text" value="Lista de actividades" readonly>
+                    </div>
+                    <div class="actions">
+                        <button class="edit">Editar</button>
+                        <button class="delate">Eliminar</button>
+                    </div>
+                </div>
+                <div class="task">
+                    <div class="content">
+                        <input type="text" class="text" value="Lista de actividades" readonly>
+                    </div>
+                    <div class="actions">
+                        <button class="edit">Editar</button>
+                        <button class="delate">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="./js/functions.js"></script>
+</body>
+</html>

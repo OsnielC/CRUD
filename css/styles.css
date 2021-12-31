@@ -1,0 +1,113 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    background-color: rgb(212, 212, 212);
+
+    padding: 50px 20px;
+    display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+h1{
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+input{
+    outline: none;
+    background-color: white ;
+    border: 1px solid #ddd; 
+    min-width: 70%;
+    min-height: 70%;
+    border-radius: 20px;
+}
+#taskSubmit{
+    background-color: red;
+    min-width: 40%;
+}
+#taskSubmit:hover{
+    opacity: 0.8;
+}
+
+#newTaskForm{
+    display: grid;
+    align-items: center;
+    width: 400px;
+    max-width: 100%;
+    min-height: 500px;
+    margin: 20px auto 40px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 40px 20px;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+    background-color: #f4f7fc;
+    overflow: hidden;
+    position: relative;
+    transition: 0.4s;
+}
+.taskList{
+    padding: 1rem;
+}
+h2{
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+.tasksContainer{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 40px 20px;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+    background-color: #f4f7fc;
+    overflow: hidden;
+    position: relative;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+}
+
+.text{
+    font-size: 1.25rem;
+    width: 100%;
+    display: block;
+    transition: 0.4s;
+    outline: none;
+    background: none;
+
+    border: none;
+}
+button{
+    outline: none;
+    background: none;
+    appearance: none;
+    border: none;
+    padding: 5px;
+}
+button:hover{
+    opacity: 0.5;
+}
+
+.actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+.edit{
+    text-transform: uppercase;
+    color: rgb(33, 209, 142);
+}
+.delate{
+    text-transform: uppercase;
+    color: crimson;
+}
