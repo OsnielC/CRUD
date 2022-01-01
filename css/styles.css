@@ -32,11 +32,17 @@ input{
     border-radius: 20px;
 }
 #taskSubmit{
-    background-color: rgb(238, 129, 129);
-    min-width: 40%;
+    border-radius: 50px;
+    min-width: 22%;
+    font-size: 1.4rem;
+    background-color: #6664ff;
+    color: white;
+    box-shadow: 2px;
+    font-weight: bold;
+    cursor: pointer;
 }
 #taskSubmit:hover{
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 #newTaskForm{

@@ -14,6 +14,11 @@ toDoButton.addEventListener('click', addToDo)
 function addToDo(event){
     //prevent from submitting
     event.preventDefault();
+    //Check if any of the forms are empty
+    if(!toDoInput.value || !responsable.value || !registrationDate.value || !finalDate.value){
+        alert("Revise que todos los campos esten rellenados")
+        return
+    }
     //Create div class task
     const todoDiv =document.createElement("div");
     todoDiv.classList.add("task");
@@ -148,6 +153,11 @@ function addToDo(event){
     })
 
     delate.addEventListener('click', ()=>{
+        if (confirm("¿Desea eliminar esta actividad?")) {
+            
+        } else {
+            return;
+        }
         toDoList.removeChild(todoDiv);
     })
 
