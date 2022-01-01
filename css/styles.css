@@ -8,11 +8,14 @@
 }
 body{
     background-color: rgb(212, 212, 212);
-
-    padding: 50px 20px;
     display: flex;
+    padding: 5px;
 	flex-direction: column;
 	min-height: 100vh;
+    transition: 0.4s;
+}
+main{
+    margin: 0% 5% 0% 5%;
 }
 h1{
     font-size: 2rem;
@@ -24,12 +27,12 @@ input{
     outline: none;
     background-color: white ;
     border: 1px solid #ddd; 
-    min-width: 70%;
+    min-width: 15%;
     min-height: 70%;
     border-radius: 20px;
 }
 #taskSubmit{
-    background-color: red;
+    background-color: rgb(238, 129, 129);
     min-width: 40%;
 }
 #taskSubmit:hover{
@@ -52,39 +55,51 @@ input{
     position: relative;
     transition: 0.4s;
 }
+
 .taskList{
     padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem,1fr));
 }
 h2{
     font-size: 1.5rem;
-    padding: 1rem;
 }
-.tasksContainer{
-    display: flex;
-    flex-direction: column;
+/*.tasksContainer{
     border: 1px solid #eee;
     border-radius: 10px;
-    padding: 40px 20px;
+
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
     background-color: #f4f7fc;
     overflow: hidden;
     position: relative;
-}
+}*/
 
 .task{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    padding: 1%;
+}
+.content{
+    display: grid;
+    align-items: center;
+    width: 400px;
+    max-width: 100%;
+    min-height: 350px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px 0px;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+    background-color: #f4f7fc;
+    overflow: hidden;
+    position: relative;
+    transition: 0.4s;
 }
 
 .text{
-    font-size: 1.25rem;
-    width: 100%;
+    width: 70%;
     display: block;
     transition: 0.4s;
     outline: none;
     background: none;
-
-    border: none;
 }
 button{
     outline: none;
@@ -106,8 +121,10 @@ button:hover{
 .edit{
     text-transform: uppercase;
     color: rgb(33, 209, 142);
+    font-size: 16px;
 }
 .delate{
     text-transform: uppercase;
     color: crimson;
+    font-size: 16px;
 }
