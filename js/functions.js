@@ -11,6 +11,8 @@ const toDoList = document.querySelector('.taskList');
 toDoButton.addEventListener('click', addToDo)
 
 //Functions
+
+
 function addToDo(event){
     //prevent from submitting
     event.preventDefault();
@@ -153,12 +155,17 @@ function addToDo(event){
     })
 
     delate.addEventListener('click', ()=>{
-        if (confirm("¿Desea eliminar esta actividad?")) {
-            
-        } else {
+        if(newStatus.value !== "Eliminada"){
+            if (confirm("¿Desea marcar como eliminada esta actividad?")) {
+                newStatus.value = "Eliminada";
+            } 
+        }
+        else {
+            if (confirm("¿Desea eliminar definitivamente esta actividad?")){
+                toDoList.removeChild(todoDiv);
+            }
             return;
         }
-        toDoList.removeChild(todoDiv);
     })
 
 }
