@@ -117,6 +117,7 @@ function addToDo(event){
     const eliminated = document.createElement('option');
     eliminated.value = "Eliminada";
     eliminated.innerHTML = "Eliminada";
+    eliminated.setAttribute("hidden", "hidden");
     newStatus.appendChild(eliminated);
 
     //Buttons
