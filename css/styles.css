@@ -2,21 +2,18 @@
     font-family: AmaticSC-Bold;
     src: url(../fonts/AmaticSC-Bold.ttf);
 }
-@font-face {
-    font-family: Poppins-Light;
-    src: url(../fonts/Poppins-Light.ttf);
-}
 
 * {
     margin: 0px auto;
     padding: 0px;
     text-align: center;
-    color: black;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     font-family: 'Open Sans', sans-serif;
 }
 body{
-    background-image: url(../img/sky.jpg);
+    background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+    background-color: rgb(212, 212, 212);
     display: flex;
     padding: 5px;
 	flex-direction: column;
@@ -30,97 +27,101 @@ h1{
     font-family: AmaticSC-Bold;
     font-size: 2.6rem;
     margin-bottom: 1rem;
-    margin-top: 1%;
+    margin-top: 5%;
 }
 
 input{
     outline: none;
-    background-color: #0000007a;
-    border: none; 
+    background-color: white ;
+    border: 1px solid #ddd; 
     min-width: 15%;
     min-height: 70%;
     border-radius: 20px;
-    color: white;
 }
-
-#weatherSubmit{
+label{
+    font-weight: bold;
+}
+#taskSubmit{
     border-radius: 50px;
     min-width: 22%;
     font-size: 1.4rem;
-    background-color: #0000009f;
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
     color: white;
     box-shadow: 2px;
     font-weight: bold;
     cursor: pointer;
 }
-#weatherSubmit:hover{
+#taskSubmit:hover{
     opacity: 0.7;
 }
 
-#newWeatherForm{
+#newTaskForm{
     display: grid;
     align-items: center;
-    width: 300px;
+    width: 400px;
     max-width: 100%;
-    height: 180px;
-    margin: 20px auto 20px;
+    min-height: 500px;
+    margin: 20px auto 40px;
+    border: 1px solid #eee;
     border-radius: 10px;
-    padding: 10px 10px;
+    padding: 40px 20px;
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
-    background-color: #0000007a;
+    background-color: #f4f7fc;
     overflow: hidden;
     position: relative;
     transition: 0.4s;
 }
 
-.weatherList{
+.taskList{
+    padding: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(20rem,1fr));
 }
 h2{
-    font-family: Poppins-Light;
-    font-size: 1rem;
-    color: white;
+    font-family: AmaticSC-Bold;
+    font-size: 2.2rem;
+}
+.view{
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 2px;
+    outline: none;
+    color: #6fa6ff;
+    border: none;
+    background-color: #f4f7fc;
+}
+.viewStatus{
+    font-size: 18px;
+    outline: none;
+    color: #6fa6ff;
 }
 
-.weatherList{
+.task{
     display: grid;
-    gap: 1rem;
-    margin-bottom: 10px;
+    padding: 1rem;
 }
-
-.cards{
+.content{
     display: grid;
-    width: 80%;
+    align-items: center;
+    width: 400px;
     max-width: 100%;
     min-height: 350px;
+    border: 1px solid #eee;
     border-radius: 10px;
     padding: 10px 0px;
-    background-color: #0000007a;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+    background-image: url(../img/papel.jpg);
     transition: 0.4s;
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
 }
 
-.date{
-    font-size: 1.3rem;
-    font-family: Poppins-Light;
-    font-weight: bolder;
-    color: white;
+.text{
+    width: 70%;
+    display: block;
+    transition: 0.4s;
+    outline: none;
+    background: none;
 }
-.image{
-    width: 100%;
-}
-.temp{
-    font-size: 2.2rem;
-    font-family: Poppins-Light;
-    color: white;
-}
-.weather{
-    font-family: Poppins-Light;
-    color: white;
-    font-size: 0.9rem;
-}
-
 button{
     outline: none;
     background: none;
@@ -132,10 +133,19 @@ button:hover{
     opacity: 0.5;
 }
 
-#map {
-    height: 300px;
-    min-width: 40%;
-    max-width: 50%;
-    border-radius: 10px;
-    margin-bottom: 1%;
+.actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+.edit{
+    text-transform: uppercase;
+    color: rgb(33, 209, 142);
+    font-size: 16px;
+}
+.delate{
+    text-transform: uppercase;
+    color: crimson;
+    font-size: 16px;
 }

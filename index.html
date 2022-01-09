@@ -5,30 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Clima</title>
+    <title>Lista de actividades</title>
 </head>
 <body>
     <header>
-        <h1>Clima</h1>
-        <form id="newWeatherForm" action="javascript:void(0);" method="post" onsubmit="application.Search()">
-            <h2>Latitud:</h2>
-            <input type="text" name="latitud" id="latitud" placeholder="latitud...">
-            <h2>Longitud:</h2>
-            <input type="text" name="longitud" id="longitud" placeholder="longitud...">
-            <button type="submit" id="weatherSubmit">+</button>
+        <h1>LISTA DE ACTIVIDADES</h1>
+        <form id="newTaskForm">
+            <label for="task">Actividad:</label>
+            <input type="text" name="task" id="task" placeholder="Escriba una actividad...">
+
+            <label for="responsable">Responsable:</label>
+            <input type="text" name="responsable" id="responsable" placeholder="Escriba un nombre...">
+
+            <label for="registrationDate">Fecha de registro:</label>
+            <input type="date" name="registrationDate" id="registrationDate">
+
+            <label for="finalDate">Fecha de cumplimiento:</label>
+            <input type="date" name="finalDate" id="finalDate">
+
+            <button type="submit" id="taskSubmit">+</button>
         </form>
     </header>
     <main>
-        <div id="map"></div>
-        <section class="weatherList">
+        <h2>Actividades</h2>
+        <!-- I was going to add a "select" to classify the tasks
+        <label for="view">Mostrar:</label>
+        <select class="view" name="view">
+            <option class="viewStatus" value="Todas" selected>Todas</option>
+            <option class="viewStatus" value="En proceso">En proceso</option>
+            <option class="viewStatus" value="Terminada">Terminada</option>
+            <option class="viewStatus" value="Retrasada">Retrasada</option>
+            <option class="viewStatus" value="Eliminada">Eliminada</option>
+        </select>-->
+        <section class="taskList">
+            <!--
+            <div class="task">
+                <div class="content">
+                    <label for="task">Actividad:</label>
+                    <input class="text" type="text" readonly="readonly" value="Comprar comida">
+                    <label for="responsable">Responsable:</label>
+                    <input class="text" type="text" readonly="readonly" value="Osniel Cebrero Arcos">
+                    <label for="registrationDate">Fecha de registro:</label>
+                    <input class="text" type="date" readonly="readonly" value="2021-12-12">
+                    <label for="finalDate">Fecha de cumplimiento:</label>
+                    <input class="text" type="date" readonly="readonly" value="2022-01-03">
+                    <label for="status">Estado:</label>
+                    <select class="status" name="status" disabled>
+                        <option value="En proceso" selected>En proceso</option>
+                        <option value="Terminada">Terminada</option>
+                        <option value="Retrasada">Retrasada</option>
+                        <option value="Eliminada">Eliminada</option>
+                    </select>
+                    <div class="actions">
+                        <button class="edit">EDITAR</button>
+                        <button class="delate">ELIMINAR</button>
+                    </div>
+                </div>
+            </div>
+        -->
         </section>
     </main>
     <script src="./js/functions.js"></script>
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxXEdoSj6wgM2mZSD_iQVQncJZqVgxJlY&callback=initMap&v=weekly&channel=2"
-    async
-    ></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    
 </body>
 </html>
