@@ -1,173 +1,128 @@
-//Selectors
-const toDoInput = document.querySelector('#task');
-const responsable = document.querySelector('#responsable');
-const registrationDate = document.querySelector('#registrationDate');
-const finalDate = document.querySelector('#finalDate');
 
-const toDoButton = document.querySelector('#taskSubmit');
-const toDoList = document.querySelector('.taskList');
+const application = new function(){
+    this.latitud = document.getElementById('latitud');
+    this.longitud = document.getElementById('longitud');
+    this.card = document.querySelector('.weatherList');
 
-//Event Listeners
-toDoButton.addEventListener('click', addToDo)
+    this.Search = async function(){
+        const lat = latitud.value;
+        const lon = longitud.value;
+        const apiKey = '1716f0f186ec777c54117ce7ec81f66b';
+        const units = 'metric';
+        const lang = 'es';
+        const url = 'https://api.openweathermap.org/data/2.5/onecall'
 
-//Functions
+        const request = url + '?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=' +units + '&lang=' + lang;
 
+        //const country = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lon+'&amp;key=AIzaSyDxXEdoSj6wgM2mZSD_iQVQncJZqVgxJlY'
+        try{
+            const response = await fetch(request);
+            const data = await response.json();
 
-function addToDo(event){
-    //prevent from submitting
-    event.preventDefault();
-    //Check if any of the forms are empty
-    if(!toDoInput.value || !responsable.value || !registrationDate.value || !finalDate.value){
-        alert("Revise que todos los campos esten rellenados")
-        return
+            console.log(data)
+            let icon = data.current.weather[0].icon
+            let icon2 = data.daily[1].weather[0].icon
+            let icon3 = data.daily[2].weather[0].icon
+            let icon4 = data.daily[3].weather[0].icon
+            let icon5 = data.daily[4].weather[0].icon
+            const dt = new Date (data.current.dt*1000)
+            const dt2 = new Date (data.daily[1].dt*1000)
+            const dt3 = new Date (data.daily[2].dt*1000)
+            const dt4 = new Date (data.daily[3].dt*1000)
+            const dt5 = new Date (data.daily[4].dt*1000)
+            let dataHtml ='';
+            dataHtml += '<div class="cards">';
+            dataHtml += '<div class="date">Actual</div>';
+            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon+'@2x.png" alt="image"></div>';
+            dataHtml += '<div class="temp">'+ data.current.temp +' &degC</div>';
+            dataHtml += '<div class="weather">'+data.current.weather[0].description+'</div>';
+            dataHtml += '<div class="weather"> Sensación termica: '+ data.current.feels_like +' &degC</div>';
+            dataHtml += '<div class="weather">Humedad: '+ data.current.humidity+'%</div>';
+            dataHtml += '<div class="weather">Uv: '+ data.current.uvi +'%</div>';
+            dataHtml += '</div>';
+            //card2
+            dataHtml += '<div class="cards">';
+            dataHtml += '<div class="date">'+ dt2.toDateString()+'</div>';
+            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon2+'@2x.png" alt="image"></div>';
+            dataHtml += '<div class="temp">'+ data.daily[1].temp.day +' &degC</div>';
+            dataHtml += '<div class="weather">'+data.daily[1].weather[0].description+'</div>';
+            dataHtml += '<div class="weather">Minima: '+data.daily[1].temp.min+' &degC</div>';
+            dataHtml += '<div class="weather">Máxima: '+data.daily[1].temp.max+' &degC</div>';
+            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[1].feels_like.day +' &degC</div>';
+            dataHtml += '<div class="weather">Humedad: '+ data.daily[1].humidity+'%</div>';
+            dataHtml += '<div class="weather">Uv: '+ data.daily[1].uvi +'%</div>';
+            dataHtml += '</div>';
+
+            //card3
+            dataHtml += '<div class="cards">';
+            dataHtml += '<div class="date">'+ dt3.toDateString()+'</div>';
+            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon3+'@2x.png" alt="image"></div>';
+            dataHtml += '<div class="temp">'+ data.daily[2].temp.day +' &degC</div>';
+            dataHtml += '<div class="weather">'+data.daily[2].weather[0].description+'</div>';
+            dataHtml += '<div class="weather">Minima: '+data.daily[2].temp.min+' &degC</div>';
+            dataHtml += '<div class="weather">Máxima: '+data.daily[2].temp.max+' &degC</div>';
+            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[2].feels_like.day +' &degC</div>';
+            dataHtml += '<div class="weather">Humedad: '+ data.daily[2].humidity+'%</div>';
+            dataHtml += '<div class="weather">Uv: '+ data.daily[2].uvi +'%</div>';
+            dataHtml += '</div>';
+
+            //card4
+            dataHtml += '<div class="cards">';
+            dataHtml += '<div class="date">'+ dt4.toDateString()+'</div>';
+            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon4+'@2x.png" alt="image"></div>';
+            dataHtml += '<div class="temp">'+ data.daily[3].temp.day +' &degC</div>';
+            dataHtml += '<div class="weather">'+data.daily[3].weather[0].description+'</div>';
+            dataHtml += '<div class="weather">Minima: '+data.daily[3].temp.min+' &degC</div>';
+            dataHtml += '<div class="weather">Máxima: '+data.daily[3].temp.max+' &degC</div>';
+            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[3].feels_like.day +' &degC</div>';
+            dataHtml += '<div class="weather">Humedad: '+ data.daily[3].humidity+'%</div>';
+            dataHtml += '<div class="weather">Uv: '+ data.daily[3].uvi +'%</div>';
+            dataHtml += '</div>';
+
+            //card6
+            dataHtml += '<div class="cards">';
+            dataHtml += '<div class="date">'+ dt5.toDateString()+'</div>';
+            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon5+'@2x.png" alt="image"></div>';
+            dataHtml += '<div class="temp">'+ data.daily[4].temp.day +' &degC</div>';
+            dataHtml += '<div class="weather">'+data.daily[4].weather[0].description+'</div>';
+            dataHtml += '<div class="weather">Minima: '+data.daily[4].temp.min+' &degC</div>';
+            dataHtml += '<div class="weather">Máxima: '+data.daily[4].temp.max+' &degC</div>';
+            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[4].feels_like.day +' &degC</div>';
+            dataHtml += '<div class="weather">Humedad: '+ data.daily[4].humidity+'%</div>';
+            dataHtml += '<div class="weather">Uv: '+ data.daily[4].uvi +'%</div>';
+            dataHtml += '</div>';
+            this.card.innerHTML = dataHtml;
+        }
+        catch(error){
+            console.log(error)
+        }
     }
-    //Create div class task
-    const todoDiv =document.createElement("div");
-    todoDiv.classList.add("task");
-    toDoList.appendChild(todoDiv);
-    //Create div class content
-    const todoContent =document.createElement("div");
-    todoContent.classList.add("content");
-    todoDiv.appendChild(todoContent);
-
-    //Activity
-    const newToDoLabel = document.createElement('label');
-    newToDoLabel.innerHTML = "Actividad:";
-    newToDoLabel.htmlFor = "task";
-    todoContent.appendChild(newToDoLabel);
-
-    const newToDo = document.createElement('input');
-    newToDo.classList.add("text");
-    newToDo.type = "text";
-    newToDo.value = toDoInput.value
-    newToDo.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newToDo);
-
-    //Responsable
-    const newResponsableLabel = document.createElement('label');
-    newResponsableLabel.innerHTML = "Responsable:";
-    newResponsableLabel.htmlFor = "responsable";
-    todoContent.appendChild(newResponsableLabel);
-
-    const newResponsable = document.createElement('input');
-    newResponsable.classList.add("text");
-    newResponsable.type = "text";
-    newResponsable.value = responsable.value
-    newResponsable.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newResponsable);
-
-    //RegistrationDate
-    const newRegistrationLabel = document.createElement('label');
-    newRegistrationLabel.innerHTML = "Fecha de registro:";
-    newRegistrationLabel.htmlFor = "registrationDate";
-    todoContent.appendChild(newRegistrationLabel);
-
-    const newRegistration = document.createElement('input');
-    newRegistration.classList.add("text");
-    newRegistration.type = "date";
-    newRegistration.value = registrationDate.value
-    newRegistration.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newRegistration);
-
-    //FinalDate
-    const newFinalLabel = document.createElement('label');
-    newFinalLabel.innerHTML = "Fecha de cumplimiento:";
-    newFinalLabel.htmlFor = "finalDate";
-    todoContent.appendChild(newFinalLabel);
-
-    const newFinal = document.createElement('input');
-    newFinal.classList.add("text");
-    newFinal.type = "date";
-    newFinal.value = registrationDate.value
-    newFinal.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newFinal);
-
-    //Status
-    const newStatusLabel = document.createElement('label');
-    newStatusLabel.innerHTML = "Estado:";
-    newStatusLabel.htmlFor = "status";
-    todoContent.appendChild(newStatusLabel);
-
-    const newStatus = document.createElement('select');
-    newStatus.classList.add("status");
-    newStatus.setAttribute("disabled", "disabled");
-    todoContent.appendChild(newStatus);
-
-    //Options
-    //In Process
-    const inProcess = document.createElement('option');
-    inProcess.setAttribute("selected", "true");
-    inProcess.value = "En proceso";
-    inProcess.innerHTML = "En proceso";
-    newStatus.appendChild(inProcess);
-
-    //Finished
-    const finished = document.createElement('option');
-    finished.value = "Terminada";
-    finished.innerHTML = "Terminada";
-    newStatus.appendChild(finished);
-
-    //Delayed
-    const delayed = document.createElement('option');
-    delayed.value = "Retrasada";
-    delayed.innerHTML = "Retrasada";
-    newStatus.appendChild(delayed);
-
-    //Eliminated
-    const eliminated = document.createElement('option');
-    eliminated.value = "Eliminada";
-    eliminated.innerHTML = "Eliminada";
-    eliminated.setAttribute("hidden", "hidden");
-    newStatus.appendChild(eliminated);
-
-    //Buttons
-    const actions =document.createElement("div");
-    actions.classList.add("actions");
-    todoContent.appendChild(actions);
-
-    const edit = document.createElement('button');
-    actions.appendChild(edit);
-    edit.classList.add("edit");
-    edit.innerHTML = "EDITAR";
-
-    const delate = document.createElement('button');
-    actions.appendChild(delate);
-    delate.classList.add("delate");
-    delate.innerHTML = "ELIMINAR";
-
-    edit.addEventListener('click', ()=>{
-        if(edit.innerHTML == "EDITAR"){
-            newToDo.removeAttribute("readonly");
-            newResponsable.removeAttribute("readonly");
-            newRegistration.removeAttribute("readonly");
-            newFinal.removeAttribute("readonly");
-            newStatus.removeAttribute("disabled")
-            edit.focus();
-            edit.innerHTML = "GUARDAR"
-        }
-        else{
-            newToDo.setAttribute("readonly", "readonly");
-            newResponsable.setAttribute("readonly", "readonly");
-            newRegistration.setAttribute("readonly", "readonly");
-            newFinal.setAttribute("readonly", "readonly");
-            newStatus.setAttribute("disabled", "disabled");
-            edit.innerHTML = "EDITAR"
-        }
-    })
-
-    delate.addEventListener('click', ()=>{
-        if(newStatus.value !== "Eliminada"){
-            if (confirm("¿Desea marcar como eliminada esta actividad?")) {
-                newStatus.value = "Eliminada";
-            } 
-        }
-        else {
-            if (confirm("¿Desea eliminar definitivamente esta actividad?")){
-                toDoList.removeChild(todoDiv);
-            }
-            return;
-        }
-    })
-
 }
 
+function initMap() {
+    const coordinates = { lat: 17.0669, lng: -96.7203 }
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 2,
+        center: coordinates,
+    });
+
+    let infoWindow = new google.maps.InfoWindow({
+    content: "Da click en el mapa para obtener las coordenadas",
+    position: coordinates,
+    });
+
+    infoWindow.open(map);
+
+    map.addListener("click", (mapsMouseEvent) => {
+    infoWindow.close();
+    
+    infoWindow = new google.maps.InfoWindow({
+    position: mapsMouseEvent.latLng,
+    });
+
+    infoWindow.setContent(
+    JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+    );
+    infoWindow.open(map);
+    });
+}
