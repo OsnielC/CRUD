@@ -16,7 +16,7 @@ const application = new function(){
                 alert("Revise que todos los campos esten rellenados")
                 return
             }
-            this.addTask(this.toDoInput.value,"En progreso", this.responsable.value, this.registrationDate.value, this.finalDate.value)
+            this.addTask(this.toDoInput.value,"En progreso", this.responsable.value, this.finalDate.value, this.registrationDate.value)
              //Boton borrar
             const on =(element, event, selector, handler)=>{
                 element.addEventListener(event, e =>{
@@ -33,7 +33,6 @@ const application = new function(){
                 if (confirm("¿Desea eliminar definitivamente esta actividad?")){
                     console.log("tuvo")
                     this.deleteTask(id)
-                    this.allTasks();
                 }
                 return;
             })
@@ -98,8 +97,10 @@ const application = new function(){
             const data = await response.json();
             console.log(data);
             this.allTasks();
+            alert("Se ha añadido la tarea con éxito")
         }
         catch(error){
+            alert("Ha ocurrido un error al agregar la tarea, vuelva a intentarlo")
             console.log(error)
         }
     }
@@ -121,8 +122,10 @@ const application = new function(){
             const data = await response.json();
             console.log(data);
             this.allTasks();
+            alert("Se ha modificado la tarea con éxito")
         }
         catch(error){
+            alert("Ha ocurrido un error al modificar la tarea, vuelva a intentarlo")
             console.log(error)
         }
     }
@@ -134,8 +137,11 @@ const application = new function(){
             const response = await fetch(deleteUrl,{method: methodSend})
             const data = await response.json();
             console.log(data);
+            alert("Se ha eliminado la tarea con éxito")
+            this.allTasks();
         }
         catch(error){
+            alert("Ha ocurrido un error al eliminar la tarea, vuelva a intentarlo")
             console.log(error)
         }
     }
@@ -172,6 +178,7 @@ const application = new function(){
             }
         }
         catch(error){
+            alert("Ha ocurrido un error al mostrar las tarea, vuelva a intentarlo")
             console.log(error)
         }
     }
