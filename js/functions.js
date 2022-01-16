@@ -9,6 +9,12 @@ const application = new function(){
     this.toDoList = document.querySelector('.taskList');
     this.btnSubmit = document.querySelector('#taskSubmit');
     this.btnMod = document.querySelector('#modSubmit');
+    this.btnUp = document.querySelector('#btnScrollUp');
+
+    this.btnUp.addEventListener('click', (e)=>{
+        e.preventDefault()
+        window.scrollTo(0,0)
+    })
 
     this.add = async function(){
         try{
@@ -41,6 +47,7 @@ const application = new function(){
             let idForm =0
             on(document, 'click','.edit',e=>{
                 console.log("Editar")
+                window.scrollTo(0,0)
                 const idTarget = e.target.parentNode.parentNode
                 idForm= idTarget.children[0].innerHTML
                 const activityForm = idTarget.children[2].value
