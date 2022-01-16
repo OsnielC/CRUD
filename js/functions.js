@@ -53,13 +53,11 @@ const application = new function(){
                 const responsableForm = idTarget.children[4].value
                 const registerForm = idTarget.children[6].value
                 const dateForm = idTarget.children[8].value
-                const statusForm = idTarget.children[10].value
                 this.toDoInput.value = activityForm
                 this.responsable.value = responsableForm
                 this.registrationDate.value = registerForm
                 this.finalDate.value = dateForm
                 this.status.removeAttribute('hidden')
-                this.status.value = statusForm
                 this.registrationDate.setAttribute('readonly','readonly')
                 this.btnMod.removeAttribute('hidden')
                 this.btnSubmit.setAttribute('hidden','hidden')
