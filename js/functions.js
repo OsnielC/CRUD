@@ -1,173 +1,191 @@
 
-//Selectors
-const toDoInput = document.querySelector('#task');
-const responsable = document.querySelector('#responsable');
-const registrationDate = document.querySelector('#registrationDate');
-const finalDate = document.querySelector('#finalDate');
+const url = "http://testingserver.com.mx/tasks/";
+const application = new function(){
+    this.toDoInput = document.querySelector('#task');
+    this.responsable = document.querySelector('#responsable');
+    this.registrationDate = document.querySelector('#registrationDate');
+    this.finalDate = document.querySelector('#finalDate');
+    this.status = document.querySelector('#status2');
+    this.toDoList = document.querySelector('.taskList');
+    this.btnSubmit = document.querySelector('#taskSubmit');
+    this.btnMod = document.querySelector('#modSubmit');
 
-const toDoButton = document.querySelector('#taskSubmit');
-const toDoList = document.querySelector('.taskList');
-
-//Event Listeners
-toDoButton.addEventListener('click', addToDo)
-
-//Functions
-
-
-function addToDo(event){
-    //prevent from submitting
-    event.preventDefault();
-    //Check if any of the forms are empty
-    if(!toDoInput.value || !responsable.value || !registrationDate.value || !finalDate.value){
-        alert("Revise que todos los campos esten rellenados")
-        return
-    }
-    //Create div class task
-    const todoDiv =document.createElement("div");
-    todoDiv.classList.add("task");
-    toDoList.appendChild(todoDiv);
-    //Create div class content
-    const todoContent =document.createElement("div");
-    todoContent.classList.add("content");
-    todoDiv.appendChild(todoContent);
-
-    //Activity
-    const newToDoLabel = document.createElement('label');
-    newToDoLabel.innerHTML = "Actividad:";
-    newToDoLabel.htmlFor = "task";
-    todoContent.appendChild(newToDoLabel);
-
-    const newToDo = document.createElement('input');
-    newToDo.classList.add("text");
-    newToDo.type = "text";
-    newToDo.value = toDoInput.value
-    newToDo.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newToDo);
-
-    //Responsable
-    const newResponsableLabel = document.createElement('label');
-    newResponsableLabel.innerHTML = "Responsable:";
-    newResponsableLabel.htmlFor = "responsable";
-    todoContent.appendChild(newResponsableLabel);
-
-    const newResponsable = document.createElement('input');
-    newResponsable.classList.add("text");
-    newResponsable.type = "text";
-    newResponsable.value = responsable.value
-    newResponsable.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newResponsable);
-
-    //RegistrationDate
-    const newRegistrationLabel = document.createElement('label');
-    newRegistrationLabel.innerHTML = "Fecha de registro:";
-    newRegistrationLabel.htmlFor = "registrationDate";
-    todoContent.appendChild(newRegistrationLabel);
-
-    const newRegistration = document.createElement('input');
-    newRegistration.classList.add("text");
-    newRegistration.type = "date";
-    newRegistration.value = registrationDate.value
-    newRegistration.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newRegistration);
-
-    //FinalDate
-    const newFinalLabel = document.createElement('label');
-    newFinalLabel.innerHTML = "Fecha de cumplimiento:";
-    newFinalLabel.htmlFor = "finalDate";
-    todoContent.appendChild(newFinalLabel);
-
-    const newFinal = document.createElement('input');
-    newFinal.classList.add("text");
-    newFinal.type = "date";
-    newFinal.value = registrationDate.value
-    newFinal.setAttribute("readonly", "readonly");
-    todoContent.appendChild(newFinal);
-
-    //Status
-    const newStatusLabel = document.createElement('label');
-    newStatusLabel.innerHTML = "Estado:";
-    newStatusLabel.htmlFor = "status";
-    todoContent.appendChild(newStatusLabel);
-
-    const newStatus = document.createElement('select');
-    newStatus.classList.add("status");
-    newStatus.setAttribute("disabled", "disabled");
-    todoContent.appendChild(newStatus);
-
-    //Options
-    //In Process
-    const inProcess = document.createElement('option');
-    inProcess.setAttribute("selected", "true");
-    inProcess.value = "En proceso";
-    inProcess.innerHTML = "En proceso";
-    newStatus.appendChild(inProcess);
-
-    //Finished
-    const finished = document.createElement('option');
-    finished.value = "Terminada";
-    finished.innerHTML = "Terminada";
-    newStatus.appendChild(finished);
-
-    //Delayed
-    const delayed = document.createElement('option');
-    delayed.value = "Retrasada";
-    delayed.innerHTML = "Retrasada";
-    newStatus.appendChild(delayed);
-
-    //Eliminated
-    const eliminated = document.createElement('option');
-    eliminated.value = "Eliminada";
-    eliminated.innerHTML = "Eliminada";
-    eliminated.setAttribute("hidden", "hidden");
-    newStatus.appendChild(eliminated);
-
-    //Buttons
-    const actions =document.createElement("div");
-    actions.classList.add("actions");
-    todoContent.appendChild(actions);
-
-    const edit = document.createElement('button');
-    actions.appendChild(edit);
-    edit.classList.add("edit");
-    edit.innerHTML = "EDITAR";
-
-    const delate = document.createElement('button');
-    actions.appendChild(delate);
-    delate.classList.add("delate");
-    delate.innerHTML = "ELIMINAR";
-
-    edit.addEventListener('click', ()=>{
-        if(edit.innerHTML == "EDITAR"){
-            newToDo.removeAttribute("readonly");
-            newResponsable.removeAttribute("readonly");
-            newRegistration.removeAttribute("readonly");
-            newFinal.removeAttribute("readonly");
-            newStatus.removeAttribute("disabled")
-            edit.focus();
-            edit.innerHTML = "GUARDAR"
-        }
-        else{
-            newToDo.setAttribute("readonly", "readonly");
-            newResponsable.setAttribute("readonly", "readonly");
-            newRegistration.setAttribute("readonly", "readonly");
-            newFinal.setAttribute("readonly", "readonly");
-            newStatus.setAttribute("disabled", "disabled");
-            edit.innerHTML = "EDITAR"
-        }
-    })
-
-    delate.addEventListener('click', ()=>{
-        if(newStatus.value !== "Eliminada"){
-            if (confirm("¿Desea marcar como eliminada esta actividad?")) {
-                newStatus.value = "Eliminada";
-            } 
-        }
-        else {
-            if (confirm("¿Desea eliminar definitivamente esta actividad?")){
-                toDoList.removeChild(todoDiv);
+    this.add = async function(){
+        try{
+            if(!this.toDoInput.value || !this.responsable.value || !this.registrationDate.value || !this.finalDate.value){
+                alert("Revise que todos los campos esten rellenados")
+                return
             }
-            return;
-        }
-    })
+            this.addTask(this.toDoInput.value,"En progreso", this.responsable.value, this.registrationDate.value, this.finalDate.value)
+             //Boton borrar
+            const on =(element, event, selector, handler)=>{
+                element.addEventListener(event, e =>{
+                    if(e.target.closest(selector)){
+                        handler(e)
+                    }
+                })
+            }
+            on(document, 'click','.delate',e=>{
+                console.log("Borrado")
+                const idTarget = e.target.parentNode.parentNode
+                const id = idTarget.firstElementChild.innerHTML
+                console.log(id)
+                if (confirm("¿Desea eliminar definitivamente esta actividad?")){
+                    console.log("tuvo")
+                    this.deleteTask(id)
+                    this.allTasks();
+                }
+                return;
+            })
 
+            //Editar
+            let idForm =0
+            on(document, 'click','.edit',e=>{
+                console.log("Editar")
+                const idTarget = e.target.parentNode.parentNode
+                idForm= idTarget.children[0].innerHTML
+                const activityForm = idTarget.children[2].value
+                const responsableForm = idTarget.children[4].value
+                const registerForm = idTarget.children[6].value
+                const dateForm = idTarget.children[8].value
+                const statusForm = idTarget.children[10].value
+                console.log(idTarget.children[10])
+                this.toDoInput.value = activityForm
+                this.responsable.value = responsableForm
+                this.registrationDate.value = registerForm
+                this.finalDate.value = dateForm
+                this.status.removeAttribute('hidden')
+                this.status.value = statusForm
+                this.registrationDate.setAttribute('readonly','readonly')
+                this.btnMod.removeAttribute('hidden')
+                this.btnSubmit.setAttribute('hidden','hidden')
+            })
+
+            this.btnMod.addEventListener('click', (e)=>{
+                e.preventDefault()
+                this.modifyTask(idForm, this.toDoInput.value, this.status.value, this.responsable.value, this.finalDate.value)
+                this.btnSubmit.removeAttribute('hidden')
+                this.btnMod.setAttribute('hidden','hidden')
+                console.log("modificar")
+                this.toDoInput.value = ''
+                this.responsable.value = ''
+                this.finalDate.value = ''
+                this.registrationDate.value= ''
+                this.registrationDate.removeAttribute('readonly')
+                this.status.setAttribute('hidden', 'hidden')
+            })
+            
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    this.addTask = async function(Task, Status, Responsable, DateCompliance,DateRegister){
+        try{
+            const methodSend = "POST";
+            const headersSend ={
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            }
+            const info = new URLSearchParams({
+                Task : Task,
+                Status : Status,
+                Responsable : Responsable,
+                DateCompliance : DateCompliance,
+                DateRegister : DateRegister
+            });
+            const response = await fetch(url,{method: methodSend, headers: headersSend, body: info})
+            const data = await response.json();
+            console.log(data);
+            this.allTasks();
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    this.modifyTask = async function(idTask, Task, Status, Responsable, DateCompliance){
+        try{
+            const methodSend = "PUT";
+            const headersSend ={
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            }
+            const info = new URLSearchParams({
+                idTask : idTask,
+                Task : Task,
+                Status : Status,
+                Responsable : Responsable,
+                DateCompliance : DateCompliance,
+            });
+            const response = await fetch(url,{method: methodSend, headers: headersSend, body: info})
+            const data = await response.json();
+            console.log(data);
+            this.allTasks();
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    this.deleteTask = async function(idTask){
+        try{
+            const methodSend = "DELETE";
+            deleteUrl = url + idTask;
+            const response = await fetch(deleteUrl,{method: methodSend})
+            const data = await response.json();
+            console.log(data);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    this.allTasks = async function(){
+        try{
+            const methodSend = "GET";
+            const response = await fetch(url,{method: methodSend})
+            const data = await response.json();
+            console.log(data);
+            this.toDoList.innerHTML=''
+            let dataHtml =''
+            for(i=0;i<data.length;i++){
+                dataHtml += '<div class="task">'
+                dataHtml += '<div class="content">'
+                dataHtml += '<div class="id" style="display: none">'+data[i].IdTask+'</div>'
+                dataHtml += '<label for="task">Actividad:</label>'
+                dataHtml += '<input class="text" type="text" readonly="readonly" value="'+data[i].Tasks+'">'
+                dataHtml += '<label for="responsable">Responsable:</label>'
+                dataHtml += '<input class="text" type="text" readonly="readonly" value="'+data[i].Responsable+'">'
+                dataHtml += '<label for="registrationDate">Fecha de registro:</label>'
+                dataHtml += '<input class="text" type="date" readonly="readonly" value="'+data[i].DateRegister+'">'
+                dataHtml += '<label for="finalDate">Fecha de cumplimiento:</label>'
+                dataHtml += '<input class="text" type="date" readonly="readonly" value="'+data[i].DateCompliance+'">'
+                dataHtml += '<label for="status">Estado:</label>'
+                dataHtml += '<div class="select">'+data[i].Status+'</div>'
+                dataHtml += '<div class="actions">'
+                dataHtml += '<button class="edit">EDITAR</button>'
+                dataHtml += '<button class="delate">ELIMINAR</button>'
+                dataHtml += '</div>'
+                dataHtml += '</div>'
+                dataHtml += '</div>'
+                this.toDoList.innerHTML = dataHtml;
+            }
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+    this.oneTask = async function(idTask){
+        try{
+            const methodSend = "GET";
+            requerestUrl = url + idTask;
+            const response = await fetch(requerestUrl,{method: methodSend})
+            const data = await response.json();
+            console.log(data);
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
 }

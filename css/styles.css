@@ -55,6 +55,20 @@ label{
     opacity: 0.7;
 }
 
+#modSubmit{
+    border-radius: 50px;
+    min-width: 22%;
+    font-size: 1.2rem;
+    background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+    color: white;
+    box-shadow: 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#modSubmit:hover{
+    opacity: 0.7;
+}
+
 #newTaskForm{
     display: grid;
     align-items: center;

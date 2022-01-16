@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>LISTA DE ACTIVIDADES</h1>
-        <form id="newTaskForm">
+        <form id="newTaskForm" action="javascript:void(0);" method="post" onsubmit="application.add()">
             <label for="task">Actividad:</label>
             <input type="text" name="task" id="task" placeholder="Escriba una actividad...">
 
@@ -22,21 +22,18 @@
 
             <label for="finalDate">Fecha de cumplimiento:</label>
             <input type="date" name="finalDate" id="finalDate">
-
+            <select id="status2" name="status2" hidden>
+                <option value="En proceso">En proceso</option>
+                <option value="Terminada">Terminada</option>
+                <option value="Retrasada">Retrasada</option>
+                <option value="Eliminada">Eliminada</option>
+            </select>
             <button type="submit" id="taskSubmit">+</button>
+            <button type="submit" id="modSubmit" hidden>Modificar</button>
         </form>
     </header>
     <main>
         <h2>Actividades</h2>
-        <!-- I was going to add a "select" to classify the tasks
-        <label for="view">Mostrar:</label>
-        <select class="view" name="view">
-            <option class="viewStatus" value="Todas" selected>Todas</option>
-            <option class="viewStatus" value="En proceso">En proceso</option>
-            <option class="viewStatus" value="Terminada">Terminada</option>
-            <option class="viewStatus" value="Retrasada">Retrasada</option>
-            <option class="viewStatus" value="Eliminada">Eliminada</option>
-        </select>-->
         <section class="taskList">
             <!--
             <div class="task">
