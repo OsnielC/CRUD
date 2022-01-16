@@ -37,7 +37,6 @@ const application = new function(){
                 const id = idTarget.firstElementChild.innerHTML
                 console.log(id)
                 if (confirm("¿Desea eliminar definitivamente esta actividad?")){
-                    console.log("tuvo")
                     this.deleteTask(id)
                 }
                 return;
@@ -55,7 +54,6 @@ const application = new function(){
                 const registerForm = idTarget.children[6].value
                 const dateForm = idTarget.children[8].value
                 const statusForm = idTarget.children[10].value
-                console.log(idTarget.children[10])
                 this.toDoInput.value = activityForm
                 this.responsable.value = responsableForm
                 this.registrationDate.value = registerForm
