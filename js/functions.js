@@ -19,7 +19,6 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-const url = "http://testingserver.com.mx/tasks/";
 const application = new function(){
     this.toDoInput = document.querySelector('#task');
     this.responsable = document.querySelector('#responsable');
