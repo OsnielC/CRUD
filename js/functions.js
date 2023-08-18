@@ -4,7 +4,12 @@ import { getFirestore } from "firebase/firestore";
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
 const firebaseConfig = {
-    FIREBASE_CONFIGURATION
+    apiKey: "AIzaSyA7NBOKfJnCC6s4VrSpcJuVtpEZfoqqi-g",
+  authDomain: "crud-ac8c8.firebaseapp.com",
+  projectId: "crud-ac8c8",
+  storageBucket: "crud-ac8c8.appspot.com",
+  messagingSenderId: "1041522586493",
+  appId: "1:1041522586493:web:9f50a17c40ac9834291214"
 };
 
 // Initialize Firebase
